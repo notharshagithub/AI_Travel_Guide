@@ -6,6 +6,8 @@
 [![Google AI](https://img.shields.io/badge/Google%20AI-Gemini%202.0-green.svg)](https://ai.google.dev/)
 [![Express](https://img.shields.io/badge/Express-4.18.2-black.svg)](https://expressjs.com/)
 [![MVC](https://img.shields.io/badge/Architecture-MVC-red.svg)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+[![Render](https://img.shields.io/badge/Backend%20Hosted%20on-Render.com-46E3B7.svg)](https://render.com/)
+[![Live API](https://img.shields.io/badge/API-Live%20Production-brightgreen.svg)](https://ai-travel-guide-backend.onrender.com)
 
 ## 📋 Table of Contents
 - [Project Structure](#project-structure)
@@ -18,6 +20,35 @@
 - [Database Schema](#database-schema)
 - [Deployment](#deployment)
 - [Contributing](#contributing)
+
+## 🌐 Live Deployment
+
+### Production Backend API
+**🔗 Live Backend:** [https://ai-travel-guide-backend.onrender.com](https://ai-travel-guide-backend.onrender.com)
+
+- **Platform**: Render.com (Cloud hosting)
+- **Status**: ✅ Production Ready
+- **SSL**: Enabled with automatic HTTPS
+- **Auto-scaling**: Handles traffic spikes
+- **Monitoring**: Real-time logs and performance metrics
+
+### API Endpoints
+```
+Base URL: https://ai-travel-guide-backend.onrender.com/api
+
+Health Check: GET /api/health
+Trip Management: /api/trips/*
+User Management: /api/users/*
+AI Services: /api/ai/*
+```
+
+### Deployment Features
+- ✅ **Zero-downtime deployments** from GitHub
+- ✅ **Automatic SSL/HTTPS** security
+- ✅ **Environment variable management**
+- ✅ **Auto-scaling** for high availability
+- ✅ **Real-time monitoring** and logging
+- ✅ **Custom domain** support
 
 ## 🏗 Project Structure
 
@@ -392,12 +423,37 @@ GET /api/ai/health
 
 ## 🚀 Deployment
 
-### Backend Deployment
-```bash
-cd backend
-npm install --production
-npm start
+### Backend Deployment (Render.com)
+The backend API is hosted on **Render.com** for production deployment:
+
+**Live Backend API:** `https://ai-travel-guide-backend.onrender.com`
+
+#### Render Deployment Configuration:
+- **Platform**: Render.com
+- **Runtime**: Node.js 18+
+- **Build Command**: `npm install`
+- **Start Command**: `npm start`
+- **Environment**: Production
+- **Auto-Deploy**: Enabled from GitHub repository
+
+#### Backend Environment Variables on Render:
+```env
+NODE_ENV=production
+PORT=10000
+FRONTEND_URL=https://your-frontend-domain.com
+FIREBASE_PROJECT_ID=your_project_id
+FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key
+GOOGLE_PLACES_API_KEY=your_places_api_key
 ```
+
+#### Render Deployment Features:
+- ✅ **Automatic SSL/HTTPS** - Secure API endpoints
+- ✅ **Auto-scaling** - Handles traffic spikes
+- ✅ **Zero-downtime deployments** - Continuous integration
+- ✅ **Environment management** - Secure variable storage
+- ✅ **Monitoring & Logs** - Real-time application monitoring
+- ✅ **Custom domains** - Professional API endpoints
 
 ### Frontend Deployment
 ```bash
@@ -406,10 +462,28 @@ npm run build
 # Deploy the 'dist' folder to your hosting service
 ```
 
+#### Recommended Frontend Hosting:
+- **Vercel** - Optimized for React applications
+- **Netlify** - Static site hosting with CI/CD
+- **Firebase Hosting** - Integrated with Firebase services
+- **GitHub Pages** - Free hosting for open source projects
+
+### Production API Endpoints
+```
+Base URL: https://ai-travel-guide-backend.onrender.com/api
+
+Health Check: GET /api/health
+Trip Endpoints: /api/trips/*
+User Endpoints: /api/users/*
+AI Endpoints: /api/ai/*
+```
+
 ### Environment Variables for Production
 - Set all environment variables in your hosting platform
 - Ensure Firebase service account key is properly configured
 - Update CORS settings for production domain
+- Configure production database connections
+- Set up monitoring and logging services
 
 ## 🤝 Contributing
 
