@@ -1,117 +1,333 @@
-# 🌍 AI Travel Guide - Intelligent Trip Planning Platform
+# 🌍 AI Travel Guide - Full Stack MVC Architecture
 
 [![React](https://img.shields.io/badge/React-18.3.1-blue.svg)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-11.1.0-orange.svg)](https://firebase.google.com/)
 [![Google AI](https://img.shields.io/badge/Google%20AI-Gemini%202.0-green.svg)](https://ai.google.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.17-38B2AC.svg)](https://tailwindcss.com/)
-[![Vite](https://img.shields.io/badge/Vite-6.0.7-646CFF.svg)](https://vitejs.dev/)
+[![Express](https://img.shields.io/badge/Express-4.18.2-black.svg)](https://expressjs.com/)
+[![MVC](https://img.shields.io/badge/Architecture-MVC-red.svg)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
 ## 📋 Table of Contents
-- [Overview](#overview)
-- [Features](#features)
+- [Project Structure](#project-structure)
+- [Architecture Overview](#architecture-overview)
 - [Technology Stack](#technology-stack)
-- [Architecture](#architecture)
-- [Database Design](#database-design)
-- [API Integration](#api-integration)
 - [Installation & Setup](#installation--setup)
 - [Environment Configuration](#environment-configuration)
-- [Usage Guide](#usage-guide)
-- [Project Structure](#project-structure)
-- [Key Components](#key-components)
-- [AI Integration](#ai-integration)
-- [Firebase Services](#firebase-services)
-- [Authentication Flow](#authentication-flow)
+- [Development Workflow](#development-workflow)
+- [API Documentation](#api-documentation)
+- [Database Schema](#database-schema)
 - [Deployment](#deployment)
 - [Contributing](#contributing)
-- [License](#license)
 
-## 🎯 Overview
+## 🏗 Project Structure
 
-**AI Travel Guide** is a comprehensive, intelligent trip planning platform that leverages cutting-edge artificial intelligence to create personalized travel itineraries. The application combines Google's Gemini AI model with Firebase backend services to deliver a seamless, user-centric travel planning experience.
+```
+AI_Travel_Guide/
+├── backend/                    # Backend API (Node.js + Express)
+│   ├── models/                # Data Models (MVC Pattern)
+│   │   ├── Trip.js           # Trip data model
+│   │   └── User.js           # User data model
+│   ├── controllers/           # Business Logic Controllers
+│   │   ├── tripController.js # Trip business logic
+│   │   └── userController.js  # User business logic
+│   ├── routes/               # API Routes
+│   │   ├── tripRoutes.js     # Trip endpoints
+│   │   ├── userRoutes.js     # User endpoints
+│   │   └── aiRoutes.js       # AI service endpoints
+│   ├── services/             # External Services
+│   │   └── aiService.js      # Google AI integration
+│   ├── middleware/           # Custom Middleware
+│   │   └── validation.js    # Request validation
+│   ├── config/              # Configuration
+│   │   ├── firebase.js      # Firebase setup
+│   │   └── serviceAccountKey.json.example
+│   ├── utils/               # Utility Functions
+│   ├── server.js           # Main server file
+│   ├── package.json        # Backend dependencies
+│   └── env.example        # Backend environment variables
+├── frontend/                 # Frontend SPA (React)
+│   ├── src/
+│   │   ├── components/      # Reusable UI Components
+│   │   │   ├── custom/      # Custom components
+│   │   │   └── ui/         # UI component library
+│   │   ├── pages/          # Page Components
+│   │   │   ├── create-trip/
+│   │   │   └── view-trip/
+│   │   ├── services/       # API Services
+│   │   │   └── api.js      # API client
+│   │   ├── hooks/          # Custom React Hooks
+│   │   │   ├── useAuth.js  # Authentication hook
+│   │   │   └── useTrip.js  # Trip management hook
+│   │   ├── utils/          # Utility Functions
+│   │   ├── constants/      # Application Constants
+│   │   ├── assets/         # Static Assets
+│   │   ├── App.jsx         # Main App Component
+│   │   └── main.jsx        # Application Entry Point
+│   ├── public/             # Static Files
+│   ├── package.json        # Frontend dependencies
+│   ├── vite.config.js      # Vite configuration
+│   ├── tailwind.config.js  # Tailwind CSS config
+│   └── env.example         # Frontend environment variables
+├── package.json            # Root package.json
+└── README.md              # This file
+```
 
-### Key Highlights
-- 🤖 **AI-Powered Planning**: Utilizes Google Gemini 2.0 Flash for intelligent itinerary generation
-- 🔥 **Firebase Integration**: Complete backend infrastructure with Firestore database
-- 🎨 **Modern UI/UX**: Built with React 18 and Tailwind CSS for responsive design
-- 🔐 **Secure Authentication**: Google OAuth integration for user management
-- 📱 **Cross-Platform**: Responsive design supporting desktop, tablet, and mobile devices
-- 🌐 **Real-time Data**: Integration with Google Places API for accurate location data
+## 🏛 Architecture Overview
 
-## ✨ Features
+### MVC Pattern Implementation
 
-### Core Functionality
-- **Intelligent Trip Planning**: AI-generated personalized itineraries based on user preferences
-- **Multi-Criteria Selection**: Budget, duration, travel companions, and destination preferences
-- **Interactive UI**: Modern, responsive interface with smooth animations
-- **Real-time Validation**: Form validation and error handling
-- **User Authentication**: Secure Google OAuth integration
-- **Data Persistence**: Firebase Firestore for reliable data storage
+#### **Backend (Server-side)**
+- **Models**: Data layer with Firebase Firestore integration
+- **Views**: JSON API responses (RESTful endpoints)
+- **Controllers**: Business logic and request handling
 
-### Advanced Features
-- **Dynamic Itinerary Generation**: AI creates detailed day-by-day plans
-- **Hotel Recommendations**: Curated accommodation options with pricing
-- **Place Details**: Comprehensive information about attractions and activities
-- **Geographic Integration**: GPS coordinates and location-based services
-- **Budget Optimization**: Cost-effective recommendations based on user budget
-- **Social Sharing**: Trip sharing capabilities with unique URLs
-
-## 🛠 Technology Stack
-
-### Frontend Technologies
-- **React 18.3.1** - Modern JavaScript library for building user interfaces
-- **Vite 6.0.7** - Fast build tool and development server
-- **Tailwind CSS 3.4.17** - Utility-first CSS framework
-- **React Router DOM 7.1.1** - Client-side routing
-- **Axios 1.7.9** - HTTP client for API requests
-
-### Backend & Database
-- **Firebase 11.1.0** - Complete backend-as-a-service platform
-- **Firestore** - NoSQL document database
-- **Firebase Analytics** - User behavior tracking and analytics
-- **Firebase Authentication** - User management and security
-
-### AI & External Services
-- **Google Generative AI 0.21.0** - Gemini 2.0 Flash model integration
-- **Google Places API** - Location data and place information
-- **Google OAuth 2.0** - Secure user authentication
-
-### UI Components & Libraries
-- **Radix UI** - Accessible component primitives
-- **Lucide React** - Beautiful icon library
-- **Sonner** - Toast notification system
-- **Class Variance Authority** - Component variant management
-- **React Google Places Autocomplete** - Location input with autocomplete
-
-## 🏗 Architecture
+#### **Frontend (Client-side)**
+- **Models**: React state management and custom hooks
+- **Views**: React components and UI
+- **Controllers**: Custom hooks for business logic
 
 ### System Architecture
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Frontend      │    │   Backend       │    │   External      │
-│   (React SPA)   │◄──►│   (Firebase)    │◄──►│   Services      │
+│   (React SPA)   │◄──►│   (Express API) │◄──►│   Services      │
 │                 │    │                 │    │                 │
-│ • React 18      │    │ • Firestore     │    │ • Google AI     │
-│ • Tailwind CSS  │    │ • Authentication│    │ • Places API    │
-│ • Vite Build    │    │ • Analytics     │    │ • OAuth 2.0     │
+│ • React 18      │    │ • Express.js    │    │ • Google AI     │
+│ • Tailwind CSS  │    │ • MVC Pattern   │    │ • Places API    │
+│ • Vite Build    │    │ • Firebase     │    │ • OAuth 2.0     │
+│ • Custom Hooks  │    │ • JWT Auth      │    │ • Firestore     │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-### Component Architecture
-- **Modular Design**: Reusable components with clear separation of concerns
-- **Custom Hooks**: Logic abstraction for better code organization
-- **Context Management**: Global state management for user data
-- **Route-based Code Splitting**: Optimized bundle loading
+## 🛠 Technology Stack
 
-## 🗄 Database Design
+### Backend Technologies
+- **Node.js 18+** - JavaScript runtime
+- **Express.js 4.18.2** - Web application framework
+- **Firebase Admin SDK 12.0.0** - Backend Firebase integration
+- **Google Generative AI 0.21.0** - AI model integration
+- **Joi 17.11.0** - Data validation
+- **Helmet 7.1.0** - Security middleware
+- **CORS 2.8.5** - Cross-origin resource sharing
+
+### Frontend Technologies
+- **React 18.3.1** - UI library
+- **Vite 6.0.7** - Build tool and dev server
+- **Tailwind CSS 3.4.17** - Utility-first CSS framework
+- **React Router DOM 7.1.1** - Client-side routing
+- **Axios 1.7.9** - HTTP client
+- **Firebase 11.1.0** - Client-side Firebase integration
+
+### Database & External Services
+- **Firebase Firestore** - NoSQL document database
+- **Google Gemini 2.0 Flash** - AI model for trip generation
+- **Google Places API** - Location and place data
+- **Google OAuth 2.0** - User authentication
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn package manager
+- Google Cloud Console account
+- Firebase project setup
+
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/notharshagithub/AI_Travel_Guide.git
+cd AI_Travel_Guide
+```
+
+### Step 2: Install All Dependencies
+```bash
+# Install root dependencies
+npm install
+
+# Install all project dependencies (backend + frontend)
+npm run install:all
+```
+
+### Step 3: Environment Configuration
+
+#### Backend Environment Setup
+```bash
+cd backend
+cp env.example .env
+# Edit .env with your actual values
+```
+
+#### Frontend Environment Setup
+```bash
+cd frontend
+cp env.example .env
+# Edit .env with your actual values
+```
+
+### Step 4: Firebase Setup
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable Firestore Database
+3. Enable Authentication with Google provider
+4. Download service account key and place in `backend/config/serviceAccountKey.json`
+
+### Step 5: Start Development Servers
+```bash
+# Start both backend and frontend in development mode
+npm run dev
+
+# Or start them separately:
+# Backend only
+npm run dev:backend
+
+# Frontend only
+npm run dev:frontend
+```
+
+## ⚙️ Environment Configuration
+
+### Backend Environment Variables
+```env
+# Server Configuration
+NODE_ENV=development
+PORT=5000
+FRONTEND_URL=http://localhost:5173
+
+# Firebase Configuration
+FIREBASE_PROJECT_ID=your_project_id
+FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+
+# Google AI Configuration
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key_here
+
+# Google Places API Configuration
+GOOGLE_PLACES_API_KEY=your_places_api_key_here
+```
+
+### Frontend Environment Variables
+```env
+# API Configuration
+VITE_API_BASE_URL=http://localhost:5000/api
+
+# Firebase Configuration (Client-side)
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+
+# Google Places API Configuration
+VITE_GOOGLE_PLACE_API_KEY=your_places_api_key_here
+VITE_GOOGLE_PLACES_API_KEY=your_places_api_key_here
+
+# Google OAuth Configuration
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+```
+
+## 🔄 Development Workflow
+
+### Backend Development
+```bash
+cd backend
+npm run dev          # Start with nodemon
+npm test            # Run tests
+npm start           # Production start
+```
+
+### Frontend Development
+```bash
+cd frontend
+npm run dev         # Start Vite dev server
+npm run build       # Build for production
+npm run preview     # Preview production build
+npm run lint        # Run ESLint
+```
+
+### Full Stack Development
+```bash
+# Root directory
+npm run dev         # Start both backend and frontend
+npm run build       # Build frontend
+npm start           # Start production backend
+```
+
+## 📚 API Documentation
+
+### Base URL
+```
+Development: http://localhost:5000/api
+Production: https://your-domain.com/api
+```
+
+### Trip Endpoints
+```javascript
+// Create a new trip
+POST /api/trips
+Body: {
+  userSelection: {
+    location: "Paris, France",
+    noOfDays: 3,
+    budget: "Moderate",
+    travels: "Couple"
+  },
+  userEmail: "user@example.com"
+}
+
+// Get trip by ID
+GET /api/trips/:tripId
+
+// Get user trips
+GET /api/trips/user/:userEmail
+
+// Update trip
+PUT /api/trips/:tripId
+Body: { /* update data */ }
+
+// Delete trip
+DELETE /api/trips/:tripId
+```
+
+### User Endpoints
+```javascript
+// Create or update user
+POST /api/users
+Body: {
+  email: "user@example.com",
+  name: "John Doe",
+  picture: "https://...",
+  provider: "google"
+}
+
+// Get user by email
+GET /api/users/:email
+
+// Get user statistics
+GET /api/users/:email/stats
+```
+
+### AI Endpoints
+```javascript
+// Generate trip with AI
+POST /api/ai/generate-trip
+Body: {
+  userSelection: {
+    location: "Tokyo, Japan",
+    noOfDays: 5,
+    budget: "Expensive",
+    travels: "Family"
+  }
+}
+
+// AI service health check
+GET /api/ai/health
+```
+
+## 🗄 Database Schema
 
 ### Firestore Collections
 
 #### `AITrips` Collection
 ```javascript
 {
-  id: "timestamp_string",
+  id: "auto_generated_id",
   userSelection: {
-    location: "Destination name",
+    location: "string",
     noOfDays: number,
     budget: "Cheap|Moderate|Expensive",
     travels: "Solo|Couple|Family|Friends"
@@ -155,309 +371,67 @@
     }
   },
   userEmail: "string",
-  createdAt: timestamp
+  createdAt: timestamp,
+  updatedAt: timestamp
 }
 ```
 
-## 🔌 API Integration
-
-### Google Generative AI Integration
-- **Model**: Gemini 2.0 Flash Experimental
-- **Configuration**: Optimized for travel planning with JSON response format
-- **Temperature**: 1.0 for creative yet consistent responses
-- **Max Tokens**: 8192 for comprehensive itinerary generation
-
-### Google Places API
-- **Places Search**: Location-based place discovery
-- **Photo References**: High-quality place images
-- **Geographic Data**: Precise coordinates and addresses
-
-### Firebase Services
-- **Firestore**: Real-time database for trip storage
-- **Authentication**: Google OAuth integration
-- **Analytics**: User behavior tracking
-
-## 🚀 Installation & Setup
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn package manager
-- Google Cloud Console account
-- Firebase project setup
-
-### Step 1: Clone the Repository
-```bash
-git clone https://github.com/notharshagithub/AI_Travel_Guide.git
-cd AI_Travel_Guide
-```
-
-### Step 2: Install Dependencies
-```bash
-npm install
-# or
-yarn install
-```
-
-### Step 3: Environment Configuration
-Create a `.env` file in the root directory:
-```env
-VITE_GOOGLE_GEMINI_API_KEY=your_gemini_api_key
-VITE_GOOGLE_PLACE_API_KEY=your_places_api_key
-VITE_GOOGLE_PLACES_API_KEY=your_places_api_key
-```
-
-### Step 4: Firebase Setup
-1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-2. Enable Firestore Database
-3. Enable Authentication with Google provider
-4. Copy your Firebase configuration to `src/service/firebaseConfig.jsx`
-
-### Step 5: Development Server
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-## ⚙️ Environment Configuration
-
-### Required Environment Variables
-```env
-# Google AI Services
-VITE_GOOGLE_GEMINI_API_KEY=your_gemini_api_key_here
-
-# Google Places API
-VITE_GOOGLE_PLACE_API_KEY=your_places_api_key_here
-VITE_GOOGLE_PLACES_API_KEY=your_places_api_key_here
-
-# Firebase Configuration (if using environment variables)
-VITE_FIREBASE_API_KEY=your_firebase_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
-```
-
-### API Key Setup
-1. **Google AI Studio**: Get your Gemini API key from [Google AI Studio](https://aistudio.google.com/)
-2. **Google Cloud Console**: Enable Places API and get your API key
-3. **Firebase Console**: Configure your Firebase project settings
-
-## 📖 Usage Guide
-
-### Creating a Trip
-1. **Destination Selection**: Use the Google Places autocomplete to select your destination
-2. **Trip Duration**: Specify the number of days for your trip
-3. **Budget Selection**: Choose from Cheap, Moderate, or Expensive options
-4. **Travel Companions**: Select who you're traveling with (Solo, Couple, Family, Friends)
-5. **Authentication**: Sign in with Google to save your trip
-6. **AI Generation**: The system generates a personalized itinerary
-
-### Viewing Your Trip
-- **Trip Overview**: Complete trip details with recommendations
-- **Hotel Options**: Curated accommodation suggestions
-- **Daily Itinerary**: Day-by-day activity plans
-- **Interactive Maps**: Geographic information for all locations
-
-## 📁 Project Structure
-
-```
-AI_Travel_Guide/
-├── public/                     # Static assets
-│   ├── logo.svg
-│   ├── placeholder.jpeg
-│   └── road-trip-vacation.jpg
-├── src/
-│   ├── components/            # Reusable UI components
-│   │   ├── custom/           # Custom components
-│   │   │   ├── GradientText.jsx
-│   │   │   ├── Header.jsx
-│   │   │   └── Hero.jsx
-│   │   └── ui/               # UI component library
-│   │       ├── button.jsx
-│   │       ├── dialog.jsx
-│   │       ├── input.jsx
-│   │       └── sonner.jsx
-│   ├── constant/             # Application constants
-│   │   └── options.jsx       # Selection options and AI prompts
-│   ├── create-trip/          # Trip creation module
-│   │   └── index.jsx
-│   ├── view-trip/            # Trip viewing module
-│   │   ├── [tripid]/         # Dynamic route for trip viewing
-│   │   │   └── index.jsx
-│   │   └── component/        # Trip view components
-│   │       ├── Footer.jsx
-│   │       ├── Hotel.jsx
-│   │       ├── InfoSec.jsx
-│   │       ├── PlaceCarditem.jsx
-│   │       └── PlacesToVisit.jsx
-│   ├── service/              # External service integrations
-│   │   ├── AIModel.jsx       # Google AI integration
-│   │   ├── firebaseConfig.jsx # Firebase configuration
-│   │   └── GlobalApi.jsx     # API utilities
-│   ├── lib/                  # Utility functions
-│   │   └── utils.js
-│   ├── assets/               # Application assets
-│   ├── App.jsx               # Main application component
-│   ├── App.css               # Global styles
-│   ├── index.css             # Base styles
-│   └── main.jsx              # Application entry point
-├── components.json            # Component configuration
-├── package.json              # Dependencies and scripts
-├── tailwind.config.js        # Tailwind CSS configuration
-├── vite.config.js            # Vite build configuration
-└── README.md                 # Project documentation
-```
-
-## 🧩 Key Components
-
-### Core Components
-- **Hero**: Landing page hero section with call-to-action
-- **CreateTrip**: Main trip creation interface with form handling
-- **ViewTrip**: Trip display with detailed itinerary
-- **Hotel**: Hotel recommendations display
-- **PlacesToVisit**: Daily itinerary visualization
-
-### UI Components
-- **Button**: Customizable button component with variants
-- **Dialog**: Modal dialog for authentication
-- **Input**: Form input with validation
-- **Sonner**: Toast notification system
-
-### Service Components
-- **AIModel**: Google Gemini AI integration
-- **FirebaseConfig**: Firebase service configuration
-- **GlobalApi**: External API utilities
-
-## 🤖 AI Integration
-
-### Google Gemini 2.0 Flash
-The application leverages Google's latest Gemini 2.0 Flash model for intelligent trip planning:
-
+#### `Users` Collection
 ```javascript
-const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash-exp",
-});
-
-const generationConfig = {
-  temperature: 1,
-  topP: 0.95,
-  topK: 40,
-  maxOutputTokens: 8192,
-  responseMimeType: "application/json",
-};
+{
+  id: "auto_generated_id",
+  email: "string",
+  name: "string",
+  picture: "string",
+  provider: "google",
+  createdAt: timestamp,
+  lastLogin: timestamp,
+  tripCount: number
+}
 ```
-
-### AI Prompt Engineering
-The system uses sophisticated prompt engineering to generate structured travel plans:
-
-```javascript
-export const AI_PROMPT = 
-"Generate Travel Plan for Location : {location} for {totalDays} Days for {traveles} with a {budget} budget, Give me a Hotels options list with HotelName,Hotel address,Price, hotel image url,geo coordinates,rating,descriptions and suggest itinerary array with placeName,Place Details,Place Image Url, Geo Coordinates,ticket Pricing,rating,Time travel each of the location for {totalDays} days with each day plan with best time to visit and the iliterary should be in array formate and the entire in JSON format.";
-```
-
-### Response Processing
-- **JSON Parsing**: Structured response handling
-- **Data Validation**: Input sanitization and error handling
-- **Fallback Mechanisms**: Graceful degradation for API failures
-
-## 🔥 Firebase Services
-
-### Firestore Database
-- **Real-time Updates**: Live data synchronization
-- **Scalable Storage**: NoSQL document-based architecture
-- **Query Optimization**: Efficient data retrieval
-- **Security Rules**: Role-based access control
-
-### Authentication
-- **Google OAuth**: Seamless user authentication
-- **Session Management**: Persistent user sessions
-- **Security**: Industry-standard security practices
-
-### Analytics
-- **User Behavior**: Track user interactions
-- **Performance Metrics**: Application performance monitoring
-- **Custom Events**: Trip creation and viewing analytics
-
-## 🔐 Authentication Flow
-
-### Google OAuth Integration
-1. **User Initiation**: User clicks "Sign In with Google"
-2. **OAuth Flow**: Redirect to Google authentication
-3. **Token Exchange**: Exchange authorization code for access token
-4. **Profile Retrieval**: Fetch user profile information
-5. **Local Storage**: Store user data securely
-6. **Session Management**: Maintain authenticated state
-
-### Security Features
-- **Token Validation**: Secure token handling
-- **CORS Configuration**: Cross-origin request security
-- **Input Sanitization**: XSS prevention
-- **HTTPS Enforcement**: Secure data transmission
 
 ## 🚀 Deployment
 
-### Build Process
+### Backend Deployment
 ```bash
-# Production build
-npm run build
-
-# Preview build
-npm run preview
+cd backend
+npm install --production
+npm start
 ```
 
-### Deployment Options
-- **Vercel**: Recommended for React applications
-- **Netlify**: Static site hosting
-- **Firebase Hosting**: Integrated with Firebase services
-- **AWS S3**: Scalable cloud hosting
+### Frontend Deployment
+```bash
+cd frontend
+npm run build
+# Deploy the 'dist' folder to your hosting service
+```
 
-### Environment Variables
-Ensure all environment variables are configured in your deployment platform:
-- Google AI API keys
-- Firebase configuration
-- Google Places API keys
+### Environment Variables for Production
+- Set all environment variables in your hosting platform
+- Ensure Firebase service account key is properly configured
+- Update CORS settings for production domain
 
 ## 🤝 Contributing
 
-We welcome contributions to improve the AI Travel Guide platform:
-
-1. **Fork the Repository**: Create your own fork
-2. **Create Feature Branch**: `git checkout -b feature/amazing-feature`
-3. **Commit Changes**: `git commit -m 'Add amazing feature'`
-4. **Push to Branch**: `git push origin feature/amazing-feature`
-5. **Open Pull Request**: Submit your changes for review
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
 ### Development Guidelines
-- Follow React best practices
-- Use TypeScript for type safety
+- Follow MVC architecture patterns
 - Write comprehensive tests
 - Update documentation
 - Follow coding standards
+- Use meaningful commit messages
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- **Google AI**: For providing the Gemini AI model
-- **Firebase**: For backend infrastructure
-- **React Community**: For the amazing ecosystem
-- **Tailwind CSS**: For the utility-first CSS framework
-- **Open Source Contributors**: For the various libraries used
-
-## 📞 Support
-
-For support and questions:
-- **GitHub Issues**: [Create an issue](https://github.com/notharshagithub/AI_Travel_Guide/issues)
-- **Email**: [Your email here]
-- **Documentation**: [Project Wiki](https://github.com/notharshagithub/AI_Travel_Guide/wiki)
-
 ---
 
-**Built with ❤️ using React, Firebase, and Google AI**
+**Built with ❤️ using React, Node.js, Firebase, and Google AI**
 
-*Transform your travel planning experience with the power of artificial intelligence.*
+*Full-stack MVC architecture for intelligent travel planning.*
